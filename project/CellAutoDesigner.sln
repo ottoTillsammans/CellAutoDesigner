@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellAutoDesigner", "CellAutoDesigner.csproj", "{F4E11DFE-1749-4617-AA68-D2018A4A0C0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4E11DFE-1749-4617-AA68-D2018A4A0C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E11DFE-1749-4617-AA68-D2018A4A0C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E11DFE-1749-4617-AA68-D2018A4A0C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E11DFE-1749-4617-AA68-D2018A4A0C0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C4235E2-B619-4679-AFDE-D95109FF3319}
+	EndGlobalSection
+EndGlobal
