@@ -13,6 +13,12 @@ namespace CellAutoDesigner
         private static int width = default;
         private static Cell[,] cells = new Cell[hight, width];
 
+        /// <summary>
+        /// Set the dimensions of the field.
+        /// </summary>
+        /// <param name="inputHight">Hight of the field</param>
+        /// <param name="inputWidth">Width of the field</param>
+        /// <param name="inputIsEndless">Endlessness flag</param>
         public static void Construct(int inputHight, int inputWidth, bool inputIsEndless)
         {
             hight = inputHight;
@@ -20,6 +26,12 @@ namespace CellAutoDesigner
             isFieldEndless = inputIsEndless;
         }
 
+        /// <summary>
+        /// Get the cell by coords.
+        /// </summary>
+        /// <param name="i">Index of column</param>
+        /// <param name="j">Index of row</param>
+        /// <returns>Reference to the cell</returns>
         public static ref Cell GetCell(int i, int j)
         {
             int _i = i;
@@ -41,10 +53,15 @@ namespace CellAutoDesigner
             {
                 _j = 1;
             }
-
             return ref cells[_i, _j];
         }
 
+        /// <summary>
+        /// Get the environment of the cell by its index.
+        /// </summary>
+        /// <param name="i">Index of column</param>
+        /// <param name="j">Index of row</param>
+        /// <returns>Environment of the cell</returns>
         private static Environment GetEnvironment(int i, int j)
         {
             Environment environment = new Environment();
@@ -63,6 +80,10 @@ namespace CellAutoDesigner
             return environment;
         }
 
+        /// <summary>
+        /// Set state of the cell according to rule using naive algo.
+        /// </summary>
+        /// <param name="rule">Used rule</param>
         public static void SetCellStateNaive(Rule rule)
         {
             for (int j = 0; j <= hight; j++)
