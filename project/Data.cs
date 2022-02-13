@@ -9,24 +9,24 @@ namespace CellAutoDesigner
     public class Environment
     {
         public bool TOP_left;
-        public bool TOP_central;
+        public bool TOP_cent;
         public bool TOP_right;
         public bool MID_left;
         public bool MID_right;
         public bool BOT_left;
-        public bool BOT_central;
+        public bool BOT_cent;
         public bool BOT_right;
-        
+
         public int GetAlivesCount()
         {
             return
-                (this.TOP_left? 1 : 0) +
-                (this.TOP_central ? 1 : 0) +
-                (this.TOP_right ? 1 : 0) +
-                (this.MID_left ? 1 : 0) +
+                (this.TOP_left ? 1 : 0) +
                 (this.MID_left ? 1 : 0) +
                 (this.BOT_left ? 1 : 0) +
-                (this.BOT_central ? 1 : 0) +
+                (this.TOP_cent ? 1 : 0) +
+                (this.BOT_cent ? 1 : 0) +
+                (this.TOP_right ? 1 : 0) +
+                (this.MID_right ? 1 : 0) +
                 (this.BOT_right ? 1 : 0);
         }
     }

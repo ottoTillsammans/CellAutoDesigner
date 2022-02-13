@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CellAutoDesigner
 {
-    public class Field
+    public static class Field
     {
         private static bool isFieldEndless = default;
         private static int hight = default;
@@ -20,24 +20,45 @@ namespace CellAutoDesigner
             isFieldEndless = inputIsEndless;
         }
 
+        public static ref Cell GetCell(int i, int j)
+        {
+            int _i = i;
+            int _j = j;
+
+            if (i < 0)
+            {
+                _i = width - 1;
+            }
+            else if (i > width)
+            {
+                _i = 1;
+            }
+            if (j < 0)
+            {
+                _j = hight - 1;
+            }
+            else if (j > width)
+            {
+                _j = 1;
+            }
+
+            return ref cells[_i, _j];
+        }
+
         private static Environment GetEnvironment(int i, int j)
         {
             Environment environment = new Environment();
-            var isOnLeftEdge = i == 0;
-            var isOnRightEdge = i == width;
-            var isOnTopEdge = j == 0;
-            var isOnBottomEdge = j == hight;
 
-            environment.TOP_left = cells[i - 1, j - 1].GetState();
-            environment.TOP_central = cells[i, j - 1].GetState();
-            environment.TOP_right = cells[i + 1, j - 1].GetState();
+            environment.TOP_left = GetCell(i - 1, j - 1).GetState();
+            environment.TOP_cent = GetCell(i, j - 1).GetState();
+            environment.TOP_right = GetCell(i + 1, j - 1).GetState();
 
-            environment.MID_left = cells[i - 1, j].GetState();
-            environment.MID_right = cells[i + 1, j].GetState();
+            environment.MID_left = GetCell(i - 1, j).GetState();
+            environment.MID_right = GetCell(i + 1, j).GetState();
 
-            environment.BOT_left = cells[i - 1, j + 1].GetState();
-            environment.BOT_central = cells[i, j + 1].GetState();
-            environment.BOT_right = cells[i + 1, j + 1].GetState();
+            environment.BOT_left = GetCell(i - 1, j + 1).GetState();
+            environment.BOT_cent = GetCell(i, j + 1).GetState();
+            environment.BOT_right = GetCell(i + 1, j + 1).GetState();
 
             return environment;
         }
