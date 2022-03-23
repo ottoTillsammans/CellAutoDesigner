@@ -12,6 +12,7 @@ namespace CellAutoDesigner
         private static int hight = default;
         private static int width = default;
         private static Cell[,] cells = new Cell[hight, width];
+        private static Cell[,] buffer = new Cell[hight, width];
 
         /// <summary>
         /// Set the dimensions of the field.
@@ -27,7 +28,25 @@ namespace CellAutoDesigner
         }
 
         /// <summary>
-        /// Get the cell by coords.
+        /// Swap the main array and the buffer then nullify the buffer.
+        /// </summary>
+        public static void SwapAndNullify()
+        {
+            var temp = cells;
+            cells = buffer;
+            buffer = temp;
+
+            for (int j = 0; j <= hight; j++)
+            {
+                for (int i = 0; i <= width; i++)
+                {
+                    buffer[i, j].Kill();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the cell by coordinates.
         /// </summary>
         /// <param name="i">Index of column</param>
         /// <param name="j">Index of row</param>
@@ -39,19 +58,19 @@ namespace CellAutoDesigner
 
             if (i < 0)
             {
-                _i = width - 1;
+                _i = width;
             }
             else if (i > width)
             {
-                _i = 1;
+                _i = 0;
             }
             if (j < 0)
             {
-                _j = hight - 1;
+                _j = hight;
             }
-            else if (j > width)
+            else if (j > hight)
             {
-                _j = 1;
+                _j = 0;
             }
             return ref cells[_i, _j];
         }
@@ -90,9 +109,11 @@ namespace CellAutoDesigner
             {
                 for (int i = 0; i <= width; i++)
                 {
-                    rule.SetCellState(ref cells[i, j], GetEnvironment(i, j));
+                    bool result = rule.SetCellState(in cells[i, j], GetEnvironment(i, j));
+                    buffer[i, j].ToBeOrNotToBe(result);
                 }
             }
+            SwapAndNullify();
         }
     }
 }
